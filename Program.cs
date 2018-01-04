@@ -27,7 +27,7 @@ namespace lists
             planetList.Remove("Pluto");
 
             foreach (string planet in planetList) {
-                Console.WriteLine(planet);
+                // Console.WriteLine(planet);
             }
 
             // List of Dictionaries with strings and list of strings
@@ -48,6 +48,26 @@ namespace lists
             Dictionary<string, List<string>> sputnik1 = new Dictionary<string, List<string>>();
             sputnik1.Add(sputnik, sputnikDestinations);
             spacecraft.Add(sputnik1);
+
+            foreach (string planet in planetList) 
+            {
+                Console.Write(planet);
+
+                List<string> visitedPlanets = new List<string>();
+
+                foreach (Dictionary<string, List<string>> craft in spacecraft)
+                {
+
+                    foreach (KeyValuePair<string, List<string>> item in craft)
+                    {
+                        if (item.Value.Contains(planet)) {
+                            visitedPlanets.Add(item.Key);
+                        }
+                    }
+                }
+                visitedPlanets.ForEach(p => Console.Write($" {p}"));
+                Console.WriteLine();
+            }
         }
     }
 }
